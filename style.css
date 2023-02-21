@@ -1,0 +1,40 @@
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+.fa-code{
+    color: blue;
+}
+
+.logotipo{
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 8px;
+    color: aqua !important;
+}
+
+.slogan{
+    color: magenta !important;
+    letter-spacing: 2px;
+    justify-content: flex-start;
+}
+
+/* .container{
+    width: 100%;
+} */
+
+.col-5{
+    /* margin: 0px; */
+    border: 1px solid black;
+    height:900px;
+}
+
+.hello-world{
+    color: white;
+    text-align: justify;
+}
+
+form{
+    color: white;
+}

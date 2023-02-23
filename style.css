@@ -1,6 +1,22 @@
 html, body {
     height: 100%;
     width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 2px;
+}
+
+.header{
+    position: fixed;
+    height: 60px;
+    width: 100%;
+}
+
+.sidebar{
+    color: rgb(104, 148, 165);
+    background-color: rgb(39, 38, 38);
+    height: calc(100vh - 60px);
 }
 
 .fa-code{
@@ -9,32 +25,42 @@ html, body {
 
 .logotipo{
     text-transform: uppercase;
-    font-weight: bold;
+}
+
+.logotipo h1{
+    font-size: 20px;
     letter-spacing: 8px;
-    color: aqua !important;
+    font-family: 'Courier New', Courier, monospace;
+    color: aquamarine;
 }
 
 .slogan{
     color: magenta !important;
     letter-spacing: 2px;
+    font-family: 'Courier New', Courier, monospace;
     justify-content: flex-start;
 }
 
-/* .container{
-    width: 100%;
-} */
+input,  textarea{
+    background-color: rgb(219, 219, 190) !important;
+}
 
-.col-5{
-    /* margin: 0px; */
-    border: 1px solid black;
-    height:900px;
+input::placeholder{
+    color: #707c80 !important;
+    letter-spacing: 2px;
+}
+
+select{
+    background-color: rgb(219, 219, 190) !important;
+    color: #707c80 !important;
+    letter-spacing: 2px;
 }
 
 .hello-world{
-    color: white;
+    color: #707c80;
     text-align: justify;
 }
 
-form{
-    color: white;
+.tela{
+    background-color: black;
 }

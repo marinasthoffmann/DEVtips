@@ -13,17 +13,24 @@
 <body>
     <header>
         <nav class="navbar bg-dark header">
-            <div class="container-fluid d-flex justify-content-start">
-              <div class="navbar-brand logotipo d-flex">
-                <i class="fa-solid fa-code fa-lg"></i>
-              </div>
-              <div class="navbar-brand logotipo mt-2">
-                <h1>DEVTIPS</h1>
-              </div>
-              <div class="navbar-text slogan">
-                = "Tips and cheats for developers";
-              </div>
-            </div>
+            <div class="container-fluid">
+                <div class="d-flex">
+                    <div class="navbar-brand logotipo">
+                        <i class="fa-solid fa-code fa-lg"></i>
+                    </div>
+                    <div class="navbar-brand logotipo mt-1">
+                        <h1>DEVTIPS</h1>
+                    </div>
+                    <div class="navbar-text slogan">
+                        = "Tips and cheats for developers";
+                    </div>
+                </div>       
+                <form class="form-inline d-flex">
+                    <input class="form-control rounded-0 rounded-start" type="search" placeholder="Localize uma dica pelo título" id="input-pesquisar" aria-label="Pesquisar">
+                    <button class="btn btn-outline-secondary rounded-0 rounded-end my-2 my-sm-0" id="btn-pesquisar" type="submit">Pesquisar</button>
+                </form>
+            </div>  
+            
         </nav>
     </header>
     <main>
@@ -34,16 +41,16 @@
             <form class="d-flex flex-column m-2 gap-3">
                 <div class="form-group">
                     <label for="titulo">Título:</label>
-                    <input type="text" class="form-control" id="titulo" placeholder="Digite o título">
+                    <input type="text" class="form-control" id="titulo" placeholder="Digite o título" required minlength="5" maxlength="50">
                 </div>
                 <div class="form-group">
                     <label for="skill">Linguagem/skill:</label>
-                    <input type="text" class="form-control" id="skill" placeholder="Digite a linguagem/skill">
+                    <input type="text" class="form-control" id="skill" placeholder="Digite a linguagem/skill" required minlength="2" maxlength="20">
                 </div>
                 <div class="form-group">
                     <label for="categoria">Categoria:</label>
-                    <select class="form-control form-select" id="categoria" aria-label="Selecione a categoria">
-                        <option selected>Selecione a categoria</option>
+                    <select class="form-control form-select" id="categoria" aria-label="Selecione a categoria" required>
+                        <option value="" selected>Selecione a categoria</option>
                         <option value="1">FrontEnd</option>
                         <option value="2">BackEnd</option>
                         <option value="3">FullStack</option>
@@ -52,15 +59,15 @@
                 </div>
                 <div class="form-group">
                     <label for="descricao">Descrição:</label>
-                    <textarea class="form-control" id="descricao" rows="10"></textarea>
+                    <textarea class="form-control" id="descricao" rows="10" required placeholder="Insira uma descrição:" minlength="10" maxlength="600"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="video">Link do vídeo (opcional):</label>
                     <input class="form-control" type="url" id="descricao" placeholder="https://endereco.com/">
                 </div>
                 <div class="d-flex gap-3">
-                    <button type="submit" class="btn btn-primary flex-grow-1">Salvar</button>
-                    <button type="reset" class="btn btn-light flex-grow-1">Limpar</button>
+                    <button type="submit" class="btn btn-outline-light flex-grow-1">Salvar</button>
+                    <button type="reset" class="btn btn-outline-secondary flex-grow-1">Limpar</button>
                 </div>
             </form>
             </div>

@@ -45,7 +45,7 @@ input,  textarea{
     background-color: rgb(219, 219, 190) !important;
 }
 
-input::placeholder{
+input::placeholder, textarea::placeholder{
     color: #707c80 !important;
     letter-spacing: 2px;
 }
@@ -63,4 +63,12 @@ select{
 
 .tela{
     background-color: black;
+}
+
+#input-pesquisar{
+    width: 400px;
+}
+
+#btn-pesquisar, #input-pesquisar{
+    height: 40px;
 }

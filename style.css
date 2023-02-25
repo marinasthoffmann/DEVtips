@@ -31,11 +31,11 @@ html, body {
     font-size: 20px;
     letter-spacing: 8px;
     font-family: 'Courier New', Courier, monospace;
-    color: aquamarine;
+    color: #4EC9B0;
 }
 
 .slogan{
-    color: magenta !important;
+    color: #C586C0 !important;
     letter-spacing: 2px;
     font-family: 'Courier New', Courier, monospace;
     justify-content: flex-start;
@@ -62,7 +62,7 @@ select{
 }
 
 .tela{
-    background-color: black;
+    background-color: rgb(43, 43, 43);
 }
 
 #input-pesquisar{
@@ -71,4 +71,44 @@ select{
 
 #btn-pesquisar, #input-pesquisar{
     height: 40px;
+}
+
+.title-word-card{
+    color: #C586C0;
+}
+
+.title-input-card{
+    color: #4EC9B0;
+}
+
+.braces-classe{
+    color: #FFD700; 
+}
+
+.const-word-card{
+    color: #569CD6;
+}
+
+.atribut-name-card{
+    color: #4FC1FF;
+}
+
+.outros-caracteres{
+    color: #D4D4D4;
+}
+
+.atribut-input-card{
+    color: #CE9178;
+}
+
+.descricao-word-card{
+    color: #DCDCAA;
+}
+
+.braces-function{
+    color: #C586C0;
+}
+
+.comentario-js{
+    color: #6A9955;
 }

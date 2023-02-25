@@ -38,7 +38,7 @@
             <div class="w-25 px-3 d-flex flex-column justify-content-center sidebar">
             <h4 class="m-2">Adicione uma dica</h4>
             <p class="hello-world m-2">Achou um conteúdo interessante que quer encontrar facilmente depois? Quer registrar padrões de código? Registre todas essas informações aqui!</p>
-            <form class="d-flex flex-column m-2 gap-3">
+            <form id="formulario" class="d-flex flex-column m-2 gap-3">
                 <div class="form-group">
                     <label for="titulo">Título:</label>
                     <input type="text" class="form-control" id="titulo" placeholder="Digite o título" required minlength="5" maxlength="50">
@@ -63,7 +63,7 @@
                 </div>
                 <div class="form-group">
                     <label for="video">Link do vídeo (opcional):</label>
-                    <input class="form-control" type="url" id="descricao" placeholder="https://endereco.com/">
+                    <input class="form-control" type="url" id="video" placeholder="https://endereco.com/">
                 </div>
                 <div class="d-flex gap-3">
                     <button type="submit" class="btn btn-outline-light flex-grow-1">Salvar</button>
@@ -114,46 +114,45 @@
                         </div>
                     </div>                  
                 </div>
-                <div class="dicas">
-                    <div class="d-flex justify-content-center">
-                        <div class="card w-75 bg-dark">
-                            <div class="title-card d-flex ms-4 mt-3">
-                                <p class="title-word-card pe-1">title</p>
-                                <p class="title-input-card pe-1">Grid x Flexbox</p>
-                                <p class="braces-classe pe-1">{</p>
-                            </div>
-                            <div class="d-flex flex-column">
-                                <div class="atribute-card d-flex ms-5">
-                                    <p class="const-word-card pe-1">const</p>
-                                    <p class="atribut-name-card pe-1">linguagemSkill</p>
-                                    <p class="outros-caracteres pe-1">=</p>
-                                    <p class="atribut-input-card pe-1">'CSS'</p>
-                                    <p class="outros-caracteres pe-1">;</p>
-                                </div>
-                                <div class="atribute-card d-flex ms-5">
-                                    <p class="const-word-card pe-1">const</p>
-                                    <p class="atribut-name-card pe-1">categoria</p>
-                                    <p class="outros-caracteres pe-1">=</p>
-                                    <p class="atribut-input-card pe-1">'FrontEnd'</p>
-                                    <p class="outros-caracteres pe-1">;</p>
-                                </div>
-                            </div>
-                            <div class="description-card ms-5">
-                                <div class="d-flex">
-                                    <p class="descricao-word-card pe-1">descricao</p>
-                                    <p class="braces-function pe-1">() {</p>
-                                </div>
-                                <div>
-                                    <p class="comentario-js pe-1">/*</p>
-                                    <p class="descricao-input-card comentario-js pe-1">Molestiae reprehenderit tenetur beatae rem non dolor. Suscipit hic animi ut ea numquam. Non et aliquid est distinctio est quod quas.</p>
-                                    <p class="comentario-js pe-1">*/</p>
-                                </div>                             
-                                <p class="braces-function pe-1">}</p>
-                            </div>
-                            <p class="braces-classe ms-4">}</p>
+                <div id="dicas" class="d-flex justify-content-center flex-column align-items-center">
+                    <div class="card w-75 bg-dark">
+                        <div class="title-card d-flex ms-4 mt-3">
+                            <p class="title-word-card pe-1">title</p>
+                            <p class="title-input-card pe-1">Grid x Flexbox</p>
+                            <p class="braces-classe pe-1">{</p>
                         </div>
-                    </div> 
-                </div>
+                        <div class="d-flex flex-column">
+                            <div class="atribute-card d-flex ms-5">
+                                <p class="const-word-card pe-1">const</p>
+                                <p class="atribut-name-card pe-1">linguagemSkill</p>
+                                <p class="outros-caracteres pe-1">=</p>
+                                <p class="atribut-input-card pe-1">'CSS'</p>
+                                <p class="outros-caracteres pe-1">;</p>
+                            </div>
+                            <div class="atribute-card d-flex ms-5">
+                                <p class="const-word-card pe-1">const</p>
+                                <p class="atribut-name-card pe-1">categoria</p>
+                                <p class="outros-caracteres pe-1">=</p>
+                                <p class="atribut-input-card pe-1">'FrontEnd'</p>
+                                <p class="outros-caracteres pe-1">;</p>
+                            </div>
+                        </div>
+                        <div class="description-card ms-5">
+                            <div class="d-flex">
+                                <p class="descricao-word-card pe-1">descricao</p>
+                                <p class="braces-function pe-1">() {</p>
+                            </div>
+                            <div>
+                                <p class="comentario-js pe-1">/*</p>
+                                <p class="descricao-input-card comentario-js pe-1">Molestiae reprehenderit tenetur beatae rem non dolor. Suscipit hic animi ut ea numquam. Non et aliquid est distinctio est quod quas.</p>
+                                <p class="comentario-js pe-1">*/</p>
+                            </div>                             
+                            <p class="braces-function pe-1">}</p>
+                        </div>
+                        <p class="braces-classe ms-4">}</p>
+                    </div>
+                    <br>
+                </div> 
             </div>
         </div>
     </main>
@@ -161,7 +160,7 @@
 
     </footer>
 
-    <script src="./main.js"></script>
+    <script type="module" src="./js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
 </body>

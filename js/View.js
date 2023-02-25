@@ -122,6 +122,39 @@ export class View {
         pFechaClasse.innerText = '}';
         card.appendChild(pFechaClasse);
 
+        //insere botões
+        const divBotoes = document.createElement('div');
+        divBotoes.classList.add("d-flex", "justify-content-end", "m-1");
+        //insere botão deletar
+        const btnDeletar = document.createElement('button');
+        btnDeletar.classList.add("bg-transparent", "border-0");
+        const icnDeletar = document.createElement('i');
+        icnDeletar.classList.add("fa-solid", "fa-trash", "fa-inverse", "p-1");
+        btnDeletar.appendChild(icnDeletar);
+        divBotoes.appendChild(btnDeletar);
+        //insere botão editar
+        const btnEditar = document.createElement('button');
+        btnEditar.classList.add("bg-transparent", "border-0");
+        const icnEditar = document.createElement('i');
+        icnEditar.classList.add("fa-solid", "fa-pen-to-square", "fa-inverse", "p-1");
+        btnEditar.appendChild(icnEditar);
+        divBotoes.appendChild(btnEditar);
+        //insere botão vídeo (se cadastrado)
+        if(video.length > 0){
+            const btnVideo = document.createElement('button');
+            btnVideo.classList.add("bg-transparent", "border-0");
+            const aVideo = document.createElement('a');
+            aVideo.setAttribute("href", video);
+            aVideo.setAttribute("target", "_blank");
+            const icnVideo = document.createElement('i');
+            icnVideo.classList.add("fa-solid", "fa-video", "fa-inverse", "p-1");
+            aVideo.appendChild(icnVideo);
+            btnVideo.appendChild(aVideo);
+            divBotoes.appendChild(btnVideo);
+        }
+
+        card.appendChild(divBotoes);
+
         divCards.appendChild(card);
         
         const espacamento = document.createElement('br');

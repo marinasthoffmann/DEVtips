@@ -13,12 +13,13 @@
 <body>
     <div id="modal-container" class="invisible">
         <div class="modalzinho d-flex flex-column align-items-center justify-content-center">
-            <p id="modal-mensagem"></p>
+            <div id="modal-conteudo">
+                <!-- <p id="modal-mensagem"></p> -->
+            </div>
             <div class="modal__header">
                 <button
-                    id="button-close"
+                    id="btn-close"
                     class="modal__close">
-                    Ok
                 </button>
             </div>            
         </div>
@@ -64,10 +65,10 @@
                         <label for="categoria">Categoria:</label>
                         <select class="form-control form-select" id="categoria" aria-label="Selecione a categoria" required>
                             <option value="" selected>Selecione a categoria</option>
-                            <option value="1">FrontEnd</option>
-                            <option value="2">BackEnd</option>
-                            <option value="3">FullStack</option>
-                            <option value="4">Comportamental</option>
+                            <option value="FrontEnd">FrontEnd</option>
+                            <option value="BackEnd">BackEnd</option>
+                            <option value="FullStack">FullStack</option>
+                            <option value="Comportamental">Comportamental</option>
                         </select>
                     </div>
                     <div class="form-group">

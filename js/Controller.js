@@ -5,15 +5,22 @@ import {Storage} from "./Storage.js";
 export class Controller{
     
     constructor() {
-        this.view = new View(); // Responsável pela criação e remoção dos elementos visuais
-        this.tips = new Tips(); // Responsável pela lista de objetos (dicas)
         this.storage = new Storage(); // Responsável por armazenar e buscar no local storage
+        this.view = new View(); // Responsável pela criação e remoção dos elementos visuais
         this.defineFunctions();
+
+        const tips = this.checkStorage();
+        this.tips = new Tips(tips); // Responsável pela lista de objetos (dicas)
     }
 
     defineFunctions() {
         this.defineSave();
         this.defineCloseModal();
+    }
+
+    checkStorage() {
+        // Busca lista na localstorage -> JSON
+        return [];
     }
 
     defineSave() {
@@ -24,7 +31,7 @@ export class Controller{
     }
 
     defineCloseModal() {
-        document.getElementById('button-close').addEventListener('click', () => {
+        document.getElementById('btn-close').addEventListener('click', () => {
             this.view.closeModal();
         })
     }
@@ -35,10 +42,16 @@ export class Controller{
         let categoria = document.getElementById("categoria").value;
         let descricao = document.getElementById("descricao").value;
         let video = document.getElementById("video").value;
-
-        this.view.addCard(titulo, skill, categoria, descricao, video);
-        // this.list.addItem(name);
-        this.view.showModal('Dica salva com sucesso!');
+        
+        this.tips.addTip(titulo, skill, categoria, descricao, video);      
+        let tip = this.tips.getTips().at(-1);
+        
+        this.view.addCard(tip);
+        this.view.showModal('<p>Dica salva com sucesso!</p>', 'Ok');
         // this.storage.update(this.list.getItemList());
+    }
+
+    editTip(){
+        this.view.editCard();
     }
 }

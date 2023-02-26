@@ -2,10 +2,11 @@ import {controller}  from "./main.js"
 
 export class View {
 
-    addCard(titulo, skill, categoria, descricao, video) {
+    addCard({titulo, skill, categoria, descricao, video, id}) {
         const divCards = document.getElementById('dicas');
 
         const card = document.createElement('div');
+        card.id = `tip-${id}`;
         card.classList.add("card", "w-75", "bg-dark", "p-1");
 
         //insere titulo
@@ -134,6 +135,7 @@ export class View {
         divBotoes.appendChild(btnDeletar);
         //insere botão editar
         const btnEditar = document.createElement('button');
+        btnEditar.id = "btn-editar";
         btnEditar.classList.add("bg-transparent", "border-0");
         const icnEditar = document.createElement('i');
         icnEditar.classList.add("fa-solid", "fa-pen-to-square", "fa-inverse", "p-1");
@@ -159,12 +161,20 @@ export class View {
         
         const espacamento = document.createElement('br');
         divCards.appendChild(espacamento);
+    };
+
+    editCard(){
+        conteudoFormulario = '<p>formulario</p>';
+        this.view.showModal(conteudoFormulario, 'Salvar');
     }
 
-    showModal(mensagem){
+    showModal(conteudo, txtBotao){
         const modal = document.getElementById('modal-container');
-        const texto = document.getElementById('modal-mensagem');
-        texto.innerText = mensagem;
+        const divConteudo = document.getElementById('modal-conteudo');
+        divConteudo.innerHTML = conteudo;
+
+        const button = document.getElementById('btn-close');
+        button.innerText = txtBotao;
 		modal.classList.toggle('invisible');
     };
 

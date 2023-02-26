@@ -27,7 +27,7 @@ export class View {
 
         //insere linguagem e categoria
         const divAtributos = document.createElement('div');
-        divAtributos.classList.add("d-flex", "flex-column");
+        divAtributos.classList.add("d-flex", "flex-column", "my-3");
         //linguagem
         const divSkill = document.createElement('div');
         divSkill.classList.add("atribute-card", "d-flex", "ms-5");
@@ -159,37 +159,17 @@ export class View {
         
         const espacamento = document.createElement('br');
         divCards.appendChild(espacamento);
-        
-    //     const checkbox = document.createElement('button');
-    //     checkbox.className = 'checkbox';
-    //     checkbox.addEventListener('click', function(event) {
-    //         event.preventDefault();
-    //         controller.openPriceWindow(id);
-    //     })
-    //     li.appendChild(checkbox);
-        
-    //     const text = document.createElement('p');
-    //     text.className = 'item-name';
-    //     text.dataset.id = id;
-    //     text.innerText = item;
-    //     li.appendChild(text);
-
-    //     if (price != 0) { // Adiciona o preço ao lado do nome do item na lista, caso exista
-    //         let priceText = document.createElement('h4');
-    //         priceText.innerHTML = `&nbsp; R$ ${parseFloat(price).toFixed(2)}`;
-    //         text.after(priceText);
-    //     }
-
-    //     const xButton = document.createElement('button');
-    //     xButton.className = 'close';
-    //     xButton.innerText = 'X';
-    //     xButton.addEventListener('click',function(event) {
-    //         event.preventDefault();
-    //         controller.removeItemFromList(this.parentNode, id);
-    //     });
-    //     li.appendChild(xButton);
-
-    //     if (status == true) li.className = 'bought';
-    //     ul.appendChild(li);
     }
+
+    showModal(mensagem){
+        const modal = document.getElementById('modal-container');
+        const texto = document.getElementById('modal-mensagem');
+        texto.innerText = mensagem;
+		modal.classList.toggle('invisible');
+    };
+
+    closeModal(){
+        const modal = document.getElementById('modal-container');
+        modal.classList.toggle('invisible');
+    };    
 }

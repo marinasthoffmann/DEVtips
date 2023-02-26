@@ -8,14 +8,25 @@ export class Controller{
         this.view = new View(); // Responsável pela criação e remoção dos elementos visuais
         this.tips = new Tips(); // Responsável pela lista de objetos (dicas)
         this.storage = new Storage(); // Responsável por armazenar e buscar no local storage
-        this.defineSubmit();
+        this.defineFunctions();
     }
 
-    defineSubmit() {
+    defineFunctions() {
+        this.defineSave();
+        this.defineCloseModal();
+    }
+
+    defineSave() {
         document.getElementById('formulario').addEventListener('submit',(event) => {
             event.preventDefault();
             this.addTip(event);
         });
+    }
+
+    defineCloseModal() {
+        document.getElementById('button-close').addEventListener('click', () => {
+            this.view.closeModal();
+        })
     }
 
     addTip() {
@@ -27,7 +38,7 @@ export class Controller{
 
         this.view.addCard(titulo, skill, categoria, descricao, video);
         // this.list.addItem(name);
-        // this.view.showModal(name);
+        this.view.showModal('Dica salva com sucesso!');
         // this.storage.update(this.list.getItemList());
     }
 }

@@ -8,9 +8,12 @@ html, body {
 }
 
 .header{
-    position: fixed;
     height: 60px;
     width: 100%;
+}
+
+.main{
+    top: 60px;
 }
 
 .sidebar{
@@ -111,4 +114,41 @@ select{
 
 .comentario-js{
     color: #6A9955;
+}
+
+#dicas{
+    height: 70vh;
+}
+
+p {
+    margin-bottom: 0!important;
+    line-height: 1.5rem;
+}
+
+.modalzinho {
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid;
+    border-radius: 10px;
+    width: 300px;
+    height: 150px;
+    background-color: white;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.modal__header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal__close {
+    width: 40px;
+    height: 25px;
+    border: 1px solid;
 }

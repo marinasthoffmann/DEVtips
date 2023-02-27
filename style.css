@@ -133,9 +133,30 @@ p {
     transform: translate(-50%, -50%);
     border: 1px solid;
     border-radius: 10px;
-    width: 300px;
-    height: 150px;
+    /* width: 300px;
+    height: 150px; */
     background-color: white;
+}
+#snackbar {
+    position: absolute;
+    left: 50%;
+    translate: (-50%, 0);
+    bottom: 50px;
+    z-index: 2;
+    width: 200px;
+    background-color: white;
+    padding: 5px 20px;
+    text-align: center;
+    border-radius: 5px;
+}
+.fade-out {
+    animation: 3s fade-out;
+}
+
+@keyframes fade-out {
+    0% { opacity: 1; }
+    60% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 .invisible {
@@ -148,7 +169,7 @@ p {
 }
 
 .modal__close {
-    width: 40px;
+    /* width: 40px; */
     height: 25px;
     border: 1px solid;
 }

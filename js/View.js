@@ -18,6 +18,7 @@ export class View {
         divTitulo.appendChild(pTitleWord);
         const pTitleInput = document.createElement('p');
         pTitleInput.classList.add("title-input-card", "pe-1");
+        pTitleInput.id = `titulo-${id}`
         pTitleInput.innerText = titulo;
         divTitulo.appendChild(pTitleInput);
         const pBraces = document.createElement('p');        
@@ -47,6 +48,7 @@ export class View {
         const pLinguagemSkillInput = document.createElement('p');
         pLinguagemSkillInput.classList.add("atribut-input-card", "pe-1");
         pLinguagemSkillInput.innerText = skill;
+        pLinguagemSkillInput.id = `skill-${id}`;
         divSkill.appendChild(pLinguagemSkillInput);
         const pOutrosCaracteres2 = document.createElement('p');
         pOutrosCaracteres2.classList.add("outros-caracteres", "pe-1");
@@ -71,6 +73,7 @@ export class View {
         const pCategoriaInput = document.createElement('p');
         pCategoriaInput.classList.add("atribut-input-card", "pe-1");
         pCategoriaInput.innerText = categoria;
+        pCategoriaInput.id = `categoria-${id}`;
         divCategoria.appendChild(pCategoriaInput);
         const pOutrosCaracteres4 = document.createElement('p');
         pOutrosCaracteres4.classList.add("outros-caracteres", "pe-1");
@@ -104,6 +107,7 @@ export class View {
         const pInputDescricao = document.createElement('p');
         pInputDescricao.classList.add("descricao-input-card", "comentario-js", "pe-1");
         pInputDescricao.innerText = descricao;
+        pInputDescricao.id = `descricao-${id}`;
         divInputDescricao.appendChild(pInputDescricao);
         const pFechaComentario = document.createElement('p');
         pFechaComentario.classList.add("comentario-js", "pe-1");
@@ -135,7 +139,11 @@ export class View {
         divBotoes.appendChild(btnDeletar);
         //insere botão editar
         const btnEditar = document.createElement('button');
-        btnEditar.id = "btn-editar";
+        btnEditar.addEventListener('click', function(event) {
+            event.preventDefault();
+            controller.editTip(id);
+        })
+        btnEditar.id = `btn-editar-${id}`;
         btnEditar.classList.add("bg-transparent", "border-0");
         const icnEditar = document.createElement('i');
         icnEditar.classList.add("fa-solid", "fa-pen-to-square", "fa-inverse", "p-1");
@@ -146,6 +154,7 @@ export class View {
             const btnVideo = document.createElement('button');
             btnVideo.classList.add("bg-transparent", "border-0");
             const aVideo = document.createElement('a');
+            aVideo.id = `video-${id}`;
             aVideo.setAttribute("href", video);
             aVideo.setAttribute("target", "_blank");
             const icnVideo = document.createElement('i');
@@ -163,10 +172,40 @@ export class View {
         divCards.appendChild(espacamento);
     };
 
-    editCard(){
-        conteudoFormulario = '<p>formulario</p>';
-        this.view.showModal(conteudoFormulario, 'Salvar');
+    createEditCard({titulo, skill, categoria, descricao, video, id}){
+        const conteudoFormulario = 
+            `<form id="formulario" class="d-flex flex-column m-2 gap-3">
+                <div class="form-group">
+                    <label for="titulo">Título:</label>
+                    <input type="text" class="form-control" id="titulo" value="${titulo}" required minlength="5" maxlength="50" >
+                </div>
+                <div class="form-group">
+                    <label for="skill">Linguagem/skill:</label>
+                    <input type="text" class="form-control" id="skill" value="${skill}" required minlength="2" maxlength="20">
+                </div>
+                <div class="form-group">
+                    <label for="categoria">Categoria:</label>
+                    <select class="form-control form-select" id="categoria" aria-label="Selecione a categoria" required value="${categoria}">
+                        <option value="">Selecione a categoria</option>
+                        <option ${categoria === 'FrontEnd' && 'selected'} value="FrontEnd">FrontEnd</option>
+                        <option ${categoria === 'BackEnd' && 'selected'} value="BackEnd">BackEnd</option>
+                        <option ${categoria === 'FullStack' && 'selected'} value="FullStack">FullStack</option>
+                        <option ${categoria === 'Comportamental' && 'selected'} value="Comportamental">Comportamental</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="descricao">Descrição:</label>
+                    <textarea class="form-control" id="descricao" rows="10" required minlength="10" maxlength="600">${descricao}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="video">Link do vídeo (opcional):</label>
+                    <input class="form-control" type="url" id="video" value="${video}" placeholder="https://endereco.com/">
+                </div>
+            </form>`;
+        this.showModal(conteudoFormulario, 'Salvar');
     }
+
+    refreshList
 
     showModal(conteudo, txtBotao){
         const modal = document.getElementById('modal-container');
@@ -178,7 +217,22 @@ export class View {
 		modal.classList.toggle('invisible');
     };
 
+    showSnackbar(texto){
+        const snackbar = document.getElementById('snackbar');
+        snackbar.classList.toggle('invisible');
+        const snackbarText = document.getElementById('snackbar-text');
+        snackbarText.innerText = texto;
+
+        snackbar.classList.add('fade-out');
+        setTimeout(() => {
+            snackbar.classList.toggle('invisible');
+            snackbar.classList.remove('fade-out');
+        }, 3000);
+    }
+
     closeModal(){
+        
+
         const modal = document.getElementById('modal-container');
         modal.classList.toggle('invisible');
     };    

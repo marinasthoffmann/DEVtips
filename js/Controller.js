@@ -15,7 +15,6 @@ export class Controller{
 
     defineFunctions() {
         this.defineSave();
-        this.defineCloseModal();
     }
 
     checkStorage() {
@@ -30,9 +29,12 @@ export class Controller{
         });
     }
 
-    defineCloseModal() {
+    defineCloseModal(id) {
         document.getElementById('btn-close').addEventListener('click', () => {
+            this.tips.editTip(id);
             this.view.closeModal();
+            this.view.updateList();
+            this.view.showSnackbar('Dica editada com sucesso!');
         })
     }
 
@@ -47,11 +49,15 @@ export class Controller{
         let tip = this.tips.getTips().at(-1);
         
         this.view.addCard(tip);
-        this.view.showModal('<p>Dica salva com sucesso!</p>', 'Ok');
+        this.view.showSnackbar('Dica salva com sucesso!');
+
+        // this.view.showModal('<p>Dica salva com sucesso!</p>', 'Ok');
         // this.storage.update(this.list.getItemList());
     }
 
-    editTip(){
-        this.view.editCard();
+    editTip(id){
+        let tip = this.tips.getTips()[id - 1]; // todo
+        this.view.createEditCard(tip);
+        this.defineCloseModal(id);
     }
 }

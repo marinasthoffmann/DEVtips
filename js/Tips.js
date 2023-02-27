@@ -30,4 +30,25 @@ export class Tips{
         
         this.tips.push(tipObj);
     }
+
+    editTip(id) {
+        let titulo = document.getElementById("titulo").value;
+        let skill = document.getElementById("skill").value;
+        let categoria = document.getElementById("categoria").value;
+        let descricao = document.getElementById("descricao").value;
+        let video = document.getElementById("video").value;
+
+        const edited = {
+            'titulo': titulo,
+            'skill': skill,
+            'categoria': categoria,
+            'descricao': descricao,
+            'video': video,
+            'id': id
+        }
+        
+        // this.tips.push(edited);
+        let index = this.tips.indexOf(tip => tip.id == id);
+        this.tips.splice(index, 1, edited);
+    }
 } 

@@ -38,6 +38,10 @@ export class Controller{
         })
     }
 
+    defineRemoveModal(id) {
+        console.log('cheguei aqui');
+    }
+
     addTip() {
         let titulo = document.getElementById("titulo").value;
         let skill = document.getElementById("skill").value;
@@ -57,7 +61,13 @@ export class Controller{
 
     editTip(id){
         let tip = this.tips.getTips()[id - 1]; // todo
-        this.view.createEditCard(tip);
+        this.view.createEditModal(tip);
         this.defineEditModal(id);
+    }
+
+    removeTip(id) {
+        let tip = this.tips.getTips()[id - 1]; // todo
+        this.view.createRemoveModal();
+        this.defineRemoveModal(id);
     }
 }

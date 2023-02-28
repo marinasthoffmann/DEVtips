@@ -133,6 +133,10 @@ export class View {
         //insere botão deletar
         const btnDeletar = document.createElement('button');
         btnDeletar.classList.add("bg-transparent", "border-0");
+        btnDeletar.addEventListener('click', function(event) {
+            event.preventDefault();
+            controller.removeTip(id);
+        })
         const icnDeletar = document.createElement('i');
         icnDeletar.classList.add("fa-solid", "fa-trash", "fa-inverse", "p-1");
         btnDeletar.appendChild(icnDeletar);
@@ -172,7 +176,7 @@ export class View {
         divCards.appendChild(espacamento);
     };
 
-    createEditCard({titulo, skill, categoria, descricao, video, id}){
+    createEditModal({titulo, skill, categoria, descricao, video, id}){
         const conteudoFormulario = 
             `<form id="formulario" class="d-flex flex-column m-2 gap-3">
                 <div class="form-group">
@@ -202,7 +206,12 @@ export class View {
                     <input class="form-control" type="url" id="video" value="${video}" placeholder="https://endereco.com/">
                 </div>
             </form>`;
-        this.showModal(conteudoFormulario, 'Salvar');
+        this.showModal(conteudoFormulario, 'Salvar', '');
+    }
+
+    createRemoveModal(){
+        const conteudo = '<p>Você tem certeza que quer deletar a dica?</p>'
+        this.showModal(conteudo, 'Sim', 'Não');
     }
 
     updateList({titulo, skill, categoria, descricao, video, id}){
@@ -218,14 +227,22 @@ export class View {
         aVideo.href = video;
     }
 
-    showModal(conteudo, txtBotao){
+    showModal(conteudo, txtBotao1, txtBotao2){
         const modal = document.getElementById('modal-container');
         const divConteudo = document.getElementById('modal-conteudo');
         divConteudo.innerHTML = conteudo;
 
-        const button = document.getElementById('btn-close');
-        button.innerText = txtBotao;
-        button.type = 'submit';
+        const button1 = document.getElementById('btn-close');
+        button1.innerText = txtBotao1;
+        button1.type = 'submit';
+
+        if (txtBotao2.length > 0) {
+            const divButton = document.getElementsByClassName('modal__header')[0];
+            const button2 = document.createElement('button');
+            button2.innerText = 'Não';
+            button2.classList.add("modal__close");
+            divButton.appendChild(button2);
+        }
 		modal.classList.toggle('invisible');
     };
 

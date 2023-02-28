@@ -205,7 +205,18 @@ export class View {
         this.showModal(conteudoFormulario, 'Salvar');
     }
 
-    refreshList
+    updateList({titulo, skill, categoria, descricao, video, id}){
+        let pTitulo = document.getElementById(`titulo-${id}`);
+        pTitulo.textContent = titulo;
+        let pSkill = document.getElementById(`skill-${id}`);
+        pSkill.textContent = skill;
+        let pCategoria = document.getElementById(`categoria-${id}`);
+        pCategoria.textContent = categoria;
+        let pDescricao = document.getElementById(`descricao-${id}`);
+        pDescricao.textContent = descricao;
+        let aVideo = document.getElementById(`video-${id}`);
+        aVideo.href = video;
+    }
 
     showModal(conteudo, txtBotao){
         const modal = document.getElementById('modal-container');
@@ -214,6 +225,7 @@ export class View {
 
         const button = document.getElementById('btn-close');
         button.innerText = txtBotao;
+        button.type = 'submit';
 		modal.classList.toggle('invisible');
     };
 
@@ -230,9 +242,7 @@ export class View {
         }, 3000);
     }
 
-    closeModal(){
-        
-
+    closeModal(){     
         const modal = document.getElementById('modal-container');
         modal.classList.toggle('invisible');
     };    

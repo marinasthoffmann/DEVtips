@@ -47,8 +47,9 @@ export class Tips{
             'id': id
         }
         
-        // this.tips.push(edited);
         let index = this.tips.indexOf(tip => tip.id == id);
         this.tips.splice(index, 1, edited);
+
+        return edited;
     }
 } 

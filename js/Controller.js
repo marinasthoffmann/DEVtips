@@ -30,16 +30,24 @@ export class Controller{
     }
 
     defineEditModal(id) {        
-        document.getElementById('btn-close').addEventListener('click', () => {
+        document.getElementById('btn-save').addEventListener('click', () => {
             let editedTip = this.tips.editTip(id);
             this.view.closeModal();
-            this.view.updateList(editedTip);
+            this.view.updateTip(editedTip);
             this.view.showSnackbar('Dica editada com sucesso!');
         })
     }
 
     defineRemoveModal(id) {
-        console.log('cheguei aqui');
+        document.getElementById('btn-cancel').addEventListener('click', () => {
+            this.view.closeModal();
+        })
+        document.getElementById('btn-save').addEventListener('click', () => {
+            this.tips.removeTip(id);            
+            this.view.removeTip(id);
+            this.view.closeModal();
+            this.view.showSnackbar('Dica removida com sucesso!');
+        })
     }
 
     addTip() {

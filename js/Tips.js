@@ -52,4 +52,9 @@ export class Tips{
 
         return edited;
     }
+
+    removeTip(id){
+        let index = this.tips.indexOf(tip => tip.id == id);
+        this.tips.splice(index, 1);
+    }
 } 

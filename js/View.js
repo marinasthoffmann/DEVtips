@@ -214,7 +214,7 @@ export class View {
         this.showModal(conteudo, 'Sim', 'Não');
     }
 
-    updateList({titulo, skill, categoria, descricao, video, id}){
+    updateTip({titulo, skill, categoria, descricao, video, id}){
         let pTitulo = document.getElementById(`titulo-${id}`);
         pTitulo.textContent = titulo;
         let pSkill = document.getElementById(`skill-${id}`);
@@ -227,19 +227,27 @@ export class View {
         aVideo.href = video;
     }
 
+    removeTip(id){
+        let cardToRemove = document.getElementById(`tip-${id}`);
+        cardToRemove.remove();
+    }
+
     showModal(conteudo, txtBotao1, txtBotao2){
         const modal = document.getElementById('modal-container');
         const divConteudo = document.getElementById('modal-conteudo');
         divConteudo.innerHTML = conteudo;
 
-        const button1 = document.getElementById('btn-close');
+        const button1 = document.getElementById('btn-save');
         button1.innerText = txtBotao1;
         button1.type = 'submit';
 
-        if (txtBotao2.length > 0) {
+        console.log(document.getElementById('btn-cancel'));
+
+        if (txtBotao2.length > 0 && document.getElementById('btn-cancel') == null) {
             const divButton = document.getElementsByClassName('modal__header')[0];
             const button2 = document.createElement('button');
             button2.innerText = 'Não';
+            button2.id = 'btn-cancel'
             button2.classList.add("modal__close");
             divButton.appendChild(button2);
         }

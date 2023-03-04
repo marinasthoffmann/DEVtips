@@ -2,6 +2,7 @@ import {View} from "./View.js";
 import {Tips} from "./Tips.js";
 import {Storage} from "./Storage.js";
 import {Statistics} from "./Statistics.js";
+import {Search} from "./Search.js";
 
 export class Controller{
     
@@ -14,11 +15,15 @@ export class Controller{
 
         this.statistics = new Statistics();
         this.updateStatistics(tips);
+        
+        this.search = new Search();
         this.defineFunctions();
     }
 
     defineFunctions() {
         this.defineSave();
+        this.definePesquisar();
+        this.defineLimparPesquisa();
     }
 
     checkStorage() {
@@ -36,6 +41,20 @@ export class Controller{
         document.getElementById('formulario').addEventListener('submit',(event) => {
             event.preventDefault();
             this.addTip(event);
+        });
+    }
+
+    definePesquisar() {
+        document.getElementById('form-pesquisa').addEventListener('submit',(event) => {
+            event.preventDefault();
+            this.searchTip(event);
+        });
+    }
+
+    defineLimparPesquisa() {
+        document.getElementById('input-limpar').addEventListener('click',(event) => {
+            event.preventDefault();
+            this.clearFilter();
         });
     }
 
@@ -89,7 +108,6 @@ export class Controller{
     }
 
     removeTip(id) {
-        // let tip = this.tips.getTips()[id - 1]; // todo
         this.view.createRemoveModal();
         this.defineRemoveModal(id);
     }
@@ -97,5 +115,17 @@ export class Controller{
     updateStatistics(tips){
         let statistics = this.statistics.updateStatistics(tips);
         this.view.updateStatistics(statistics);
+    }
+
+    searchTip(){
+        let searchedTitle = document.getElementById("input-pesquisar").value;
+        let allTips = this.tips.getTips();
+        let unfilteredTips = this.search.searchByTitle(searchedTitle, allTips);
+        this.view.hideUnfilteredTips(unfilteredTips);
+    }
+
+    clearFilter(){
+        let allTips = this.tips.getTips();
+        this.view.clearFilter(allTips);
     }
 }

@@ -20,6 +20,8 @@ html, body {
     color: rgb(104, 148, 165);
     background-color: rgb(39, 38, 38);
     height: calc(100vh - 60px);
+    position: sticky;
+    top: 60px;
 }
 
 .fa-code{
@@ -72,7 +74,11 @@ select{
     width: 400px;
 }
 
-#btn-pesquisar, #input-pesquisar{
+#input-limpar{
+    width: 35px;
+}
+
+#btn-pesquisar, #input-pesquisar, #input-limpar{
     height: 40px;
 }
 
@@ -117,7 +123,7 @@ select{
 }
 
 #dicas{
-    height: 70vh;
+    overflow-y: visible;
 }
 
 p {
@@ -133,8 +139,6 @@ p {
     transform: translate(-50%, -50%);
     border: 1px solid;
     border-radius: 10px;
-    /* width: 300px;
-    height: 150px; */
     background-color: white;
 }
 #snackbar {
@@ -169,7 +173,6 @@ p {
 }
 
 .modal__close {
-    /* width: 40px; */
     height: 25px;
     border: 1px solid;
 }

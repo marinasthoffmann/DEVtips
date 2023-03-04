@@ -32,8 +32,9 @@
                         = "Tips and cheats for developers";
                     </div>
                 </div>       
-                <form class="form-inline d-flex">
-                    <input class="form-control rounded-0 rounded-start" type="search" placeholder="Localize uma dica pelo título" id="input-pesquisar" aria-label="Pesquisar">
+                <form class="form-inline d-flex" id="form-pesquisa">
+                    <input class="form-control rounded-0 rounded-start" placeholder="Localize uma dica pelo título" id="input-pesquisar" aria-label="Pesquisar">
+                    <input type="reset" id="input-limpar" class="rounded-0 form-control" value="X" alt="Clear the search form">
                     <button class="btn btn-outline-secondary rounded-0 rounded-end my-2 my-sm-0" id="btn-pesquisar" type="submit">Pesquisar</button>
                 </form>
             </div>  
@@ -121,7 +122,7 @@
                         </div>
                     </div>                  
                 </div>
-                <div id="dicas" class="d-flex justify-content-center flex-column align-items-center overflow-scroll">
+                <div id="dicas" class="d-flex justify-content-center flex-column align-items-center">
             </div>
         </div>		
     </main>

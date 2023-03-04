@@ -250,7 +250,7 @@ export class View {
             </div>`;
 
         this.showModal(conteudo, botoes);
-    }
+    };
 
     updateTip({titulo, skill, categoria, descricao, video, id}){
         let pTitulo = document.getElementById(`titulo-${id}`);
@@ -264,11 +264,27 @@ export class View {
         let aVideo = document.getElementById(`video-${id}`);
         if (aVideo)
             aVideo.href = video;
-    }
+    };
 
     removeTip(id){
         let cardToRemove = document.getElementById(`tip-${id}`);
         cardToRemove.remove();
+    };
+
+    hideUnfilteredTips(unfilteredTips){
+        unfilteredTips.forEach(unfilteredTip => {
+            let cardToHide = document.getElementById(`tip-${unfilteredTip.id}`);
+            cardToHide.classList.add("d-none");
+        });
+    };
+
+    clearFilter(tips){
+        tips.forEach(tip => {
+            let card = document.getElementById(`tip-${tip.id}`);
+            card.classList.remove("d-none");
+        });
+        let form = document.getElementById('form-pesquisa');
+        form.reset();
     }
 
     showModal(conteudo, botoes){

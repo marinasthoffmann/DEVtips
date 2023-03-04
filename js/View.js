@@ -224,7 +224,8 @@ export class View {
         let pDescricao = document.getElementById(`descricao-${id}`);
         pDescricao.textContent = descricao;
         let aVideo = document.getElementById(`video-${id}`);
-        aVideo.href = video;
+        if (aVideo)
+            aVideo.href = video;
     }
 
     removeTip(id){

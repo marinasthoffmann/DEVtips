@@ -2,11 +2,11 @@ export class Storage {
     constructor() {
     }
 
-    update(list) {
-        localStorage.setItem('storageList', JSON.stringify(list));
+    update(tips) {
+        localStorage.setItem('storageTips', JSON.stringify(tips));
     }
 
     getItems() {
-        return JSON.parse(localStorage.getItem('storageList'));
+        return JSON.parse(localStorage.getItem('storageTips'));
     }
 }

@@ -18,8 +18,14 @@ export class Controller{
     }
 
     checkStorage() {
-        // Busca lista na localstorage -> JSON
-        return [];
+        const tipsFromStorage = this.storage.getItems();
+        if (tipsFromStorage.length) {
+            console.log(typeof(tipsFromStorage));
+            tipsFromStorage.forEach(tip => this.view.addCard(tip));
+            return tipsFromStorage;            
+        } else {
+            return[];
+        }
     }
 
     defineSave() {
@@ -35,6 +41,7 @@ export class Controller{
             this.view.closeModal();
             this.view.updateTip(editedTip);
             this.view.showSnackbar('Dica editada com sucesso!');
+            this.storage.update(this.tips.getTips());
         })
     }
 
@@ -47,6 +54,7 @@ export class Controller{
             this.view.removeTip(id);
             this.view.closeModal();
             this.view.showSnackbar('Dica removida com sucesso!');
+            this.storage.update(this.tips.getTips());
         })
     }
 
@@ -63,8 +71,7 @@ export class Controller{
         this.view.addCard(tip);
         this.view.showSnackbar('Dica salva com sucesso!');
 
-        // this.view.showModal('<p>Dica salva com sucesso!</p>', 'Ok');
-        // this.storage.update(this.list.getItemList());
+        this.storage.update(this.tips.getTips());
     }
 
     editTip(id){

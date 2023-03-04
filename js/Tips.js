@@ -7,13 +7,17 @@ export class Tips{
         return [...this.tips];
     }
 
-    setTips(list) {
-        this.tips = list;
+    setTips(tips) {
+        this.tips = tips;
     }
 
     createId() {
-        const ids = this.tips.map(tip => tip.id);
-        return Math.max(ids) + 1;
+        if (this.tips.length == 0) {
+            return 1;
+        } else{
+            const ids = this.tips.map(tip => tip.id);
+            return Math.max(...ids) + 1;
+        }
     }
 
     addTip(titulo, skill, categoria, descricao, video) {
@@ -56,5 +60,6 @@ export class Tips{
     removeTip(id){
         let index = this.tips.indexOf(tip => tip.id == id);
         this.tips.splice(index, 1);
+        console.log(this.tips);
     }
 } 

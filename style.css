@@ -163,7 +163,7 @@ p {
     visibility: hidden;
 }
 
-.modal__header {
+#modal__buttons {
     display: flex;
     justify-content: flex-end;
 }

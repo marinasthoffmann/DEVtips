@@ -176,8 +176,21 @@ export class View {
         divCards.appendChild(espacamento);
     };
 
+    updateStatistics({ frontEnd, backEnd, fullStack, comportamental }){
+        const pFrontEnd = document.getElementsByClassName('estatistica-front')[0]
+        pFrontEnd.innerText = frontEnd;
+        const pBackEnd = document.getElementsByClassName('estatistica-back')[0]
+        pBackEnd.innerText = backEnd;
+        const pFStack = document.getElementsByClassName('estatistica-fstack')[0]
+        pFStack.innerText = fullStack;
+        const pComportamental = document.getElementsByClassName('estatistica-skill')[0]
+        pComportamental.innerText = comportamental;
+        const pTotal = document.getElementsByClassName('estatistica-total')[0]
+        pTotal.innerText = (frontEnd + backEnd + fullStack + comportamental);
+    }
+
     createEditModal({titulo, skill, categoria, descricao, video, id}){
-        const conteudoFormulario = 
+        const conteudo = 
             `<form id="formulario" class="d-flex flex-column m-2 gap-3">
                 <div class="form-group">
                     <label for="titulo">Título:</label>
@@ -206,12 +219,37 @@ export class View {
                     <input class="form-control" type="url" id="video" value="${video}" placeholder="https://endereco.com/">
                 </div>
             </form>`;
-        this.showModal(conteudoFormulario, 'Salvar', '');
+
+        const botoes = 
+            `<div id="modal__buttons">
+                <button
+                    id="btn-save"
+                    class="modal__close">
+                Salvar
+                </button>
+            </div>`;
+
+        this.showModal(conteudo, botoes)
     }
 
     createRemoveModal(){
         const conteudo = '<p>Você tem certeza que quer deletar a dica?</p>'
-        this.showModal(conteudo, 'Sim', 'Não');
+        const botoes = 
+            `<div id="modal__buttons">
+                <button
+                    id="btn-save"
+                    class="modal__close">
+                    Sim
+                </button>
+
+                <button
+                    id="btn-cancel"
+                    class="modal__close">
+                    Não
+                </button>
+            </div>`;
+
+        this.showModal(conteudo, botoes);
     }
 
     updateTip({titulo, skill, categoria, descricao, video, id}){
@@ -233,26 +271,10 @@ export class View {
         cardToRemove.remove();
     }
 
-    showModal(conteudo, txtBotao1, txtBotao2){
+    showModal(conteudo, botoes){
         const modal = document.getElementById('modal-container');
-        const divConteudo = document.getElementById('modal-conteudo');
-        divConteudo.innerHTML = conteudo;
-
-        const button1 = document.getElementById('btn-save');
-        button1.innerText = txtBotao1;
-        button1.type = 'submit';
-
-        console.log(document.getElementById('btn-cancel'));
-
-        if (txtBotao2.length > 0 && document.getElementById('btn-cancel') == null) {
-            const divButton = document.getElementsByClassName('modal__header')[0];
-            const button2 = document.createElement('button');
-            button2.innerText = 'Não';
-            button2.id = 'btn-cancel'
-            button2.classList.add("modal__close");
-            divButton.appendChild(button2);
-        }
-		modal.classList.toggle('invisible');
+        modal.innerHTML = conteudo + botoes;
+		modal.classList.remove('invisible');
     };
 
     showSnackbar(texto){
@@ -270,6 +292,6 @@ export class View {
 
     closeModal(){     
         const modal = document.getElementById('modal-container');
-        modal.classList.toggle('invisible');
+        modal.classList.add('invisible');
     };    
 }

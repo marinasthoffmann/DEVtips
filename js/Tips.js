@@ -1,6 +1,6 @@
 export class Tips{
     constructor(tips) {
-        this.tips = [];
+        tips.length ? this.tips = tips : this.tips = [];
     }
 
     getTips() {
@@ -50,16 +50,15 @@ export class Tips{
             'video': video,
             'id': id
         }
-        
-        let index = this.tips.indexOf(tip => tip.id == id);
-        this.tips.splice(index, 1, edited);
+
+        const index = this.tips.findIndex((tip) => tip.id == id);
+        this.tips.splice(index, 1, edited);        
 
         return edited;
     }
 
     removeTip(id){
-        let index = this.tips.indexOf(tip => tip.id == id);
+        const index = this.tips.findIndex((tip) => tip.id == id);
         this.tips.splice(index, 1);
-        console.log(this.tips);
     }
 } 

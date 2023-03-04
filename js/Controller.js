@@ -1,16 +1,20 @@
 import {View} from "./View.js";
 import {Tips} from "./Tips.js";
 import {Storage} from "./Storage.js";
+import {Statistics} from "./Statistics.js";
 
 export class Controller{
     
     constructor() {
         this.storage = new Storage(); // Responsável por armazenar e buscar no local storage
         this.view = new View(); // Responsável pela criação e remoção dos elementos visuais
-        this.defineFunctions();
 
         const tips = this.checkStorage();
         this.tips = new Tips(tips); // Responsável pela lista de objetos (dicas)
+
+        this.statistics = new Statistics();
+        this.updateStatistics(tips);
+        this.defineFunctions();
     }
 
     defineFunctions() {
@@ -19,12 +23,12 @@ export class Controller{
 
     checkStorage() {
         const tipsFromStorage = this.storage.getItems();
-        if (tipsFromStorage.length) {
-            console.log(typeof(tipsFromStorage));
+        if (tipsFromStorage && tipsFromStorage.length) {
             tipsFromStorage.forEach(tip => this.view.addCard(tip));
+            
             return tipsFromStorage;            
         } else {
-            return[];
+            return [];
         }
     }
 
@@ -38,10 +42,11 @@ export class Controller{
     defineEditModal(id) {        
         document.getElementById('btn-save').addEventListener('click', () => {
             let editedTip = this.tips.editTip(id);
-            this.view.closeModal();
             this.view.updateTip(editedTip);
             this.view.showSnackbar('Dica editada com sucesso!');
             this.storage.update(this.tips.getTips());
+            this.updateStatistics(this.tips.getTips());
+            this.view.closeModal();
         })
     }
 
@@ -52,9 +57,10 @@ export class Controller{
         document.getElementById('btn-save').addEventListener('click', () => {
             this.tips.removeTip(id);            
             this.view.removeTip(id);
-            this.view.closeModal();
             this.view.showSnackbar('Dica removida com sucesso!');
             this.storage.update(this.tips.getTips());
+            this.updateStatistics(this.tips.getTips());
+            this.view.closeModal();
         })
     }
 
@@ -72,6 +78,8 @@ export class Controller{
         this.view.showSnackbar('Dica salva com sucesso!');
 
         this.storage.update(this.tips.getTips());
+
+        this.updateStatistics(this.tips.getTips());
     }
 
     editTip(id){
@@ -81,8 +89,13 @@ export class Controller{
     }
 
     removeTip(id) {
-        let tip = this.tips.getTips()[id - 1]; // todo
+        // let tip = this.tips.getTips()[id - 1]; // todo
         this.view.createRemoveModal();
         this.defineRemoveModal(id);
+    }
+
+    updateStatistics(tips){
+        let statistics = this.statistics.updateStatistics(tips);
+        this.view.updateStatistics(statistics);
     }
 }

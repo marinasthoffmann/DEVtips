@@ -5,7 +5,7 @@ export class View {
     addCard({titulo, skill, categoria, descricao, video, id}) {
         const divCards = document.getElementById('dicas');
 
-        const card = document.createElement('div');
+        const card = document.createElement('li');
         card.id = `tip-${id}`;
         card.classList.add("card", "bg-dark", "p-1");
 
@@ -173,6 +173,7 @@ export class View {
         divCards.appendChild(card);
         
         const espacamento = document.createElement('br');
+        espacamento.id = `espacamento-${id}`
         divCards.appendChild(espacamento);
 
         let form = document.getElementById('formulario');
@@ -277,12 +278,16 @@ export class View {
     removeTip(id){
         let cardToRemove = document.getElementById(`tip-${id}`);
         cardToRemove.remove();
+        let espacamentoToRemove = document.getElementById(`espacamento-${id}`);
+        espacamentoToRemove.remove();
     };
 
     hideUnfilteredTips(unfilteredTips){
         unfilteredTips.forEach(unfilteredTip => {
             let cardToHide = document.getElementById(`tip-${unfilteredTip.id}`);
             cardToHide.classList.add("d-none");
+            let spaceToHide = document.getElementById(`espacamento-${unfilteredTip.id}`);
+            spaceToHide.classList.add("d-none");
         });
     };
 
@@ -300,6 +305,8 @@ export class View {
         tips.forEach(tip => {
             let card = document.getElementById(`tip-${tip.id}`);
             card.classList.remove("d-none");
+            let space = document.getElementById(`espacamento-${tip.id}`);
+            space.classList.remove("d-none");
         });
         let form = document.getElementById('form-pesquisa');
         form.reset();

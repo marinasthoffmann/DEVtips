@@ -7,7 +7,7 @@ export class View {
 
         const card = document.createElement('div');
         card.id = `tip-${id}`;
-        card.classList.add("card", "w-75", "bg-dark", "p-1");
+        card.classList.add("card", "bg-dark", "p-1");
 
         //insere titulo
         const divTitulo = document.createElement('div');
@@ -174,6 +174,9 @@ export class View {
         
         const espacamento = document.createElement('br');
         divCards.appendChild(espacamento);
+
+        let form = document.getElementById('formulario');
+        form.reset();
     };
 
     updateStatistics({ frontEnd, backEnd, fullStack, comportamental }){
@@ -226,6 +229,11 @@ export class View {
                     id="btn-save"
                     class="modal__close">
                 Salvar
+                </button>
+                <button
+                    id="btn-cancel"
+                    class="modal__close">
+                Cancelar
                 </button>
             </div>`;
 

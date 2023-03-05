@@ -59,20 +59,28 @@ export class Controller{
     }
 
     defineEditModal(id) {        
-        document.getElementById('btn-save').addEventListener('click', () => {
-            let editedTip = this.tips.editTip(id);
-            this.view.updateTip(editedTip);
-            this.view.showSnackbar('Dica editada com sucesso!');
-            this.storage.update(this.tips.getTips());
-            this.updateStatistics(this.tips.getTips());
+        document.getElementById('btn-cancel').addEventListener('click', () => {
             this.view.closeModal();
+        });
+        document.getElementById('btn-save').addEventListener('click', () => {
+            if (this.formIsValid()){
+                let editedTip = this.tips.editTip(id);
+                this.view.updateTip(editedTip);
+                this.view.showSnackbar('Dica editada com sucesso!');
+                this.storage.update(this.tips.getTips());
+                this.updateStatistics(this.tips.getTips());
+                this.view.closeModal();
+            } else {
+                this.view.showSnackbar('Formulário inválido!');
+            }
+            
         })
     }
 
     defineRemoveModal(id) {
         document.getElementById('btn-cancel').addEventListener('click', () => {
             this.view.closeModal();
-        })
+        });
         document.getElementById('btn-save').addEventListener('click', () => {
             this.tips.removeTip(id);            
             this.view.removeTip(id);
@@ -102,8 +110,8 @@ export class Controller{
     }
 
     editTip(id){
-        let tip = this.tips.getTips()[id - 1]; // todo
-        this.view.createEditModal(tip);
+        let tip = this.tips.getTips().filter(tip => tip.id == id);
+        this.view.createEditModal(tip[0]);
         this.defineEditModal(id);
     }
 
@@ -127,5 +135,19 @@ export class Controller{
     clearFilter(){
         let allTips = this.tips.getTips();
         this.view.clearFilter(allTips);
+    }
+
+    formIsValid(){
+        let titulo = document.getElementById('titulo').value;
+        let skill = document.getElementById('skill').value;
+        let categoria = document.getElementById('categoria').value;
+        let descricao = document.getElementById('descricao').value;
+        console.log(titulo.length >= 5, titulo.length <= 50, skill.length >= 2, skill.length <= 20, categoria != '', descricao.length >= 10,descricao.length <= 600);
+        if (titulo.length >= 5 && titulo.length <= 50 && skill.length >= 2 && 
+            skill.length <= 20 && categoria != '' && descricao.length >= 10 && descricao.length <= 600){
+            return true;
+        } else{
+            return false;
+        }        
     }
 }

@@ -126,6 +126,10 @@ select{
     overflow-y: visible;
 }
 
+.card{
+    width: 900px;
+}
+
 p {
     margin-bottom: 0!important;
     line-height: 1.5rem;

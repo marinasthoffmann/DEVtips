@@ -24,6 +24,7 @@ export class Controller{
         this.defineSave();
         this.definePesquisar();
         this.defineLimparPesquisa();
+        this.defineFiltrosCategoria();
     }
 
     checkStorage() {
@@ -91,6 +92,28 @@ export class Controller{
         })
     }
 
+    defineFiltrosCategoria() {
+        document.getElementById('backend-card').addEventListener('click',() => {
+            this.filterByCategory('BackEnd');
+        });
+
+        document.getElementById('fullstack-card').addEventListener('click',() => {
+            this.filterByCategory('FullStack');
+        });
+
+        document.getElementById('frontend-card').addEventListener('click',() => {
+            this.filterByCategory('FrontEnd');
+        });
+
+        document.getElementById('comportamental-card').addEventListener('click',() => {
+            this.filterByCategory('Comportamental');
+        });
+
+        document.getElementById('total-card').addEventListener('click',() => {
+            this.filterByCategory('Total');
+        });
+    }
+
     addTip() {
         let titulo = document.getElementById("titulo").value;
         let skill = document.getElementById("skill").value;
@@ -135,7 +158,7 @@ export class Controller{
     clearFilter(){
         let allTips = this.tips.getTips();
         this.view.clearFilter(allTips);
-    }
+    };
 
     formIsValid(){
         let titulo = document.getElementById('titulo').value;
@@ -149,5 +172,17 @@ export class Controller{
         } else{
             return false;
         }        
-    }
+    };
+
+    filterByCategory(searchedCategory){
+        this.view.focusOnCategory(searchedCategory);
+        if(searchedCategory == 'Total'){
+            this.clearFilter();
+        } else{
+            this.clearFilter();
+            let allTips = this.tips.getTips();
+            let unfilteredTips = this.search.searchByCategory(searchedCategory, allTips);
+            this.view.hideUnfilteredTips(unfilteredTips);
+        }        
+    };
 }

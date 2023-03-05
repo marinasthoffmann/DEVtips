@@ -286,6 +286,16 @@ export class View {
         });
     };
 
+    focusOnCategory(category){
+        document.getElementById('total-card').style = 'border: none';
+        document.getElementById('backend-card').style = 'border: none';
+        document.getElementById('frontend-card').style = 'border: none';
+        document.getElementById('fullstack-card').style = 'border: none';
+        document.getElementById('comportamental-card').style = 'border: none';
+
+        document.getElementById(`${category.toLowerCase()}-card`).style = 'border: white solid 1px';
+    }
+
     clearFilter(tips){
         tips.forEach(tip => {
             let card = document.getElementById(`tip-${tip.id}`);

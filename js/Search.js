@@ -9,7 +9,6 @@ export class Search {
 
     searchByCategory(category, tips){
         let unfilteredTips = tips.filter(tip => tip.categoria != category);
-        console.log(unfilteredTips)
         return unfilteredTips;
     }
 }

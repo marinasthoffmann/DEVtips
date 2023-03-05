@@ -165,7 +165,6 @@ export class Controller{
         let skill = document.getElementById('skill').value;
         let categoria = document.getElementById('categoria').value;
         let descricao = document.getElementById('descricao').value;
-        console.log(titulo.length >= 5, titulo.length <= 50, skill.length >= 2, skill.length <= 20, categoria != '', descricao.length >= 10,descricao.length <= 600);
         if (titulo.length >= 5 && titulo.length <= 50 && skill.length >= 2 && 
             skill.length <= 20 && categoria != '' && descricao.length >= 10 && descricao.length <= 600){
             return true;
